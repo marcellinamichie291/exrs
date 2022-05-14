@@ -39,7 +39,7 @@ async fn save_all_trades_websockets() {
 
     let mut web_socket_handler = WebSocketHandler::new(local_wrt);
     let agg_trade: String = "!ticker@arr".to_string();
-    let (tx, mut rx) = tokio::sync::mpsc::channel(100);
+    let (tx, mut rx) = local_channel::mpsc::channel();
     let mut web_socket: FuturesWebSockets<Vec<FuturesWebsocketEvent>> = FuturesWebSockets::new(tx);
 
     actix_rt::spawn(async move {

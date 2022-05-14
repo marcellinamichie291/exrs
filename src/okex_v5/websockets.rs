@@ -20,7 +20,8 @@ use hmac_sha256::HMAC;
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
 use serde_json::from_slice;
-use tokio::sync::mpsc;
+// use tokio::sync::mpsc;
+use local_channel::mpsc;
 use uuid::Uuid;
 
 pub struct WebSockets<WE: serde::de::DeserializeOwned + std::fmt::Debug> {

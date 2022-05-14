@@ -13,7 +13,8 @@ use awc::{
 use bytes::Bytes;
 use futures_util::{sink::SinkExt as _, stream::StreamExt as _};
 use serde_json::from_slice;
-use tokio::sync::mpsc;
+// use tokio::sync::mpsc;
+use local_channel::mpsc;
 
 pub static STREAM_ENDPOINT: &str = "stream";
 pub static WS_ENDPOINT: &str = "ws";
