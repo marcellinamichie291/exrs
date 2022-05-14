@@ -1,8 +1,3 @@
-
-
-
-
-
 use super::client::Client;
 use super::errors::*;
 use super::rest_model::*;
@@ -14,7 +9,6 @@ use super::rest_model::*;
 // };
 // use super::rest_model::{OrderSide, TimeInForce};
 // use super::rest_model::{PairAndWindowQuery, PairQuery};
-
 
 // trade
 static API_V5_ORDER: &str = "/api/v5/trade/order";

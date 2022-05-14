@@ -3,7 +3,7 @@ use exrs::binance_f::api::*;
 use exrs::binance_f::userstream::*;
 use exrs::binance_f::websockets::*;
 use exrs::binance_f::ws_model::{BookTickerEvent, FuturesWebsocketEvent};
-use std::sync::atomic::{AtomicBool};
+use std::sync::atomic::AtomicBool;
 
 #[actix_rt::main]
 async fn main() {

@@ -1,8 +1,4 @@
-
-
 use super::client::*;
-
-
 
 static USER_DATA_STREAM: &str = "/api/v3/userDataStream";
 

@@ -5,7 +5,6 @@ use env_logger::Builder;
 use exrs::okex_v5::account::*;
 use exrs::okex_v5::api::*;
 
-
 use exrs::okex_v5::rest_model::PositionSide;
 
 static API_KEY: &str = "";
