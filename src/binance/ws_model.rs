@@ -6,25 +6,25 @@ use super::rest_model::{
 #[serde(tag = "e")]
 pub enum WebsocketEvent {
     #[serde(alias = "aggTrade")]
-    AggTrade(Box<TradesEvent>),
+    AggTrade(TradesEvent),
     #[serde(alias = "trade")]
-    Trade(Box<TradeEvent>),
+    Trade(TradeEvent),
     #[serde(alias = "kline")]
-    Kline(Box<KlineEvent>),
+    Kline(KlineEvent),
     #[serde(alias = "24hrTicker")]
-    DayTicker(Box<DayTickerEvent>),
+    DayTicker(DayTickerEvent),
     #[serde(alias = "24hrMiniTicker")]
-    DayMiniTicker(Box<MiniDayTickerEvent>),
+    DayMiniTicker(MiniDayTickerEvent),
     #[serde(alias = "depthUpdate")]
-    DepthOrderBook(Box<DepthOrderBookEvent>),
+    DepthOrderBook(DepthOrderBookEvent),
     #[serde(alias = "outboundAccountPosition")]
-    AccountPositionUpdate(Box<AccountPositionUpdate>),
+    AccountPositionUpdate(AccountPositionUpdate),
     #[serde(alias = "balanceUpdate")]
-    BalanceUpdate(Box<BalanceUpdate>),
+    BalanceUpdate(BalanceUpdate),
     #[serde(alias = "executionReport")]
-    OrderUpdate(Box<OrderUpdate>),
+    OrderUpdate(OrderUpdate),
     #[serde(alias = "listStatus")]
-    ListOrderUpdate(Box<OrderListUpdate>),
+    ListOrderUpdate(OrderListUpdate),
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -271,8 +271,8 @@ pub struct CombinedStreamEvent<T> {
 #[serde(untagged)]
 pub enum WebsocketEventUntag {
     WebsocketEvent(WebsocketEvent),
-    OrderBookPartial(Box<OrderBookPartial>),
-    BookTicker(Box<BookTickerEvent>),
+    OrderBookPartial(OrderBookPartial),
+    BookTicker(BookTickerEvent),
 }
 
 impl<T> CombinedStreamEvent<T> {
