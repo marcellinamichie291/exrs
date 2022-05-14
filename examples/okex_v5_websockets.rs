@@ -1,7 +1,7 @@
 use env_logger::Builder;
 use exrs::okex_v5::websockets::*;
-use exrs::okex_v5::ws_model::{TickerEvent, WebsocketEvent};
-use std::sync::atomic::{AtomicBool, Ordering};
+use exrs::okex_v5::ws_model::{WebsocketEvent};
+use std::sync::atomic::{AtomicBool};
 
 #[actix_rt::main]
 async fn main() {
