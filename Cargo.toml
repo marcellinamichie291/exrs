@@ -1,0 +1,43 @@
+[package]
+authors = ["zp <zhenpingfeng@gmail.com>"]
+categories = ["api-bindings"]
+description = "Crypto Exchanges Rust API Binding."
+keywords = ["exchange", "trading", "crypto", "market"]
+license = "MIT OR Apache-2.0"
+name = "exrs"
+edition = "2021"
+readme = "README.md"
+repository = "https://github.com/zhenpingfeng/exrs"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-codec = "0.5.0"
+actix-rt = "2.7.0"
+awc = { version = "3.0.0", features = ["rustls"] }
+base64 = "0.13.0"
+bytes = "1.1.0"
+chrono = "0.4.19"
+csv = "1.1.6"
+env_logger = "0.9.0"
+futures = "0.3.21"
+futures-util = "0.3.21"
+fxhash = "0.2.1"
+hashbrown = { version = "0.12.1", features = ["serde"] }
+hex = "0.4.3"
+hmac-sha256 = "1.1.2"
+lazy_static = "1.4.0"
+libdeflater = "0.8.0"
+log = "0.4.17"
+reqwest = { version = "0.11.10", default-features = false, features = ["json", "blocking", "rustls-tls"] }
+rust_decimal = "1.23.1"
+rust_decimal_macros = "1.23.1"
+serde = { version = "1.0.137", features = ["derive"] }
+serde_json = "1.0.81"
+serde_qs = "0.9.2"
+snmalloc-rs = { version = "0.2.28", features = ["1mib"] }
+thiserror = "1.0.31"
+tokio = { version = "1.18.2", features = ["full"] }
+url = "2.2.2"
+uuid = { version = "1.0.0", features = ["serde", "v4"] }
