@@ -155,7 +155,7 @@ impl<WE: serde::de::DeserializeOwned + std::fmt::Debug> WebSockets<WE> {
                                 }
                                 let event: WE = from_slice(&msg)?;
 
-                                if let Err(e) = self.sender.send(event).await {
+                                if let Err(e) = self.sender.send(event) {
                                     return Err(Error::Msg(format!("{:?}", e)));
                                 }
                             }

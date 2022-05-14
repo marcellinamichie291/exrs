@@ -43,7 +43,7 @@ async fn user_stream_websocket() {
     let keep_running = AtomicBool::new(true); // Used to control the event loop
     let api_key_user = Some("YOUR_KEY".into());
     let user_stream: FuturesUserStream = BinanceF::new(api_key_user, None);
-    let (tx, mut rx) = local_channel::mpsc::channel(100);
+    let (tx, mut rx) = local_channel::mpsc::channel();
 
     let tx = tx.clone();
     if let Ok(answer) = user_stream.start().await {
@@ -75,7 +75,7 @@ async fn user_stream_websocket() {
 async fn market_websocket() {
     let keep_running = AtomicBool::new(true); // Used to control the event loop
     let agg_trade: String = format!("{}@aggTrade", "ethusdt");
-    let (tx, mut rx) = local_channel::mpsc::channel(100);
+    let (tx, mut rx) = local_channel::mpsc::channel();
     let mut web_socket: FuturesWebSockets<FuturesWebsocketEvent> = FuturesWebSockets::new(tx);
 
     actix_rt::spawn(async move {
@@ -112,7 +112,7 @@ async fn market_websocket() {
 async fn bookticker_websocket() {
     let keep_running = AtomicBool::new(true);
     let bookticker: String = "ethusdt@bookTicker".to_string();
-    let (tx, mut rx) = local_channel::mpsc::channel(100);
+    let (tx, mut rx) = local_channel::mpsc::channel();
     let mut web_socket: FuturesWebSockets<BookTickerEvent> = FuturesWebSockets::new(tx);
 
     actix_rt::spawn(async move {
@@ -146,7 +146,7 @@ async fn bookticker_websocket() {
 async fn all_trades_websocket() {
     let keep_running = AtomicBool::new(true); // Used to control the event loop
     let agg_trade = all_ticker_stream();
-    let (tx, mut rx) = local_channel::mpsc::channel(100);
+    let (tx, mut rx) = local_channel::mpsc::channel();
     let mut web_socket: FuturesWebSockets<Vec<FuturesWebsocketEvent>> = FuturesWebSockets::new(tx);
 
     actix_rt::spawn(async move {

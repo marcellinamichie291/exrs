@@ -2,6 +2,8 @@ use super::util::HashMap;
 use serde_json::Value;
 use thiserror::Error;
 
+use crate::binance_f::ws_model::FuturesWebsocketEvent;
+
 #[derive(Debug, Deserialize, Error)]
 #[error("code: {code}, msg: {msg}")]
 pub struct BinanceContentError {
@@ -34,6 +36,8 @@ pub enum Error {
     Qs(#[from] serde_qs::Error),
     #[error(transparent)]
     WsProtocolError(#[from] awc::error::WsProtocolError),
+    #[error(transparent)]
+    SendError(local_channel::mpsc::SendError<FuturesWebsocketEvent>),
     #[error(transparent)]
     TimestampError(#[from] std::time::SystemTimeError),
     #[error(transparent)]

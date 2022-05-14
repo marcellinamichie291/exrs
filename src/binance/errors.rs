@@ -2,6 +2,8 @@ use serde_json::Value;
 use std::collections::HashMap;
 use thiserror::Error;
 
+use crate::binance::ws_model::WebsocketEvent;
+
 #[derive(Debug, Deserialize, Error)]
 #[error("code: {code}, msg: {msg}")]
 pub struct BinanceContentError {
@@ -34,6 +36,8 @@ pub enum Error {
     Qs(#[from] serde_qs::Error),
     #[error(transparent)]
     WsProtocolError(#[from] awc::error::WsProtocolError),
+    #[error(transparent)]
+    SendError(local_channel::mpsc::SendError<WebsocketEvent>),
     #[error(transparent)]
     TimestampError(#[from] std::time::SystemTimeError),
     #[error(transparent)]
