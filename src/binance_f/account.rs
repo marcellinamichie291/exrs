@@ -22,6 +22,7 @@ static FAPI_BALANCE: &str = "/fapi/v2/balance";
 static FAPI_LEVERAGE: &str = "/fapi/v1/leverage";
 static FAPI_POSITION_SIDE_DUAL: &str = "/fapi/v1/positionSide/dual";
 static FAPI_MULTI_ASSETS_MARGIN: &str = "/fapi/v1/multiAssetsMargin";
+static FAPI_ACCOUNT: &str = "/fapi/v2/account";
 
 #[derive(Clone)]
 pub struct FuturesAccount {
@@ -276,6 +277,14 @@ impl FuturesAccount {
         let request = build_signed_request(parameters, self.recv_window)?;
         self.client
             .get_signed_d(FAPI_BALANCE, request.as_str())
+            .await
+    }
+
+    pub async fn account(&self) -> Result<serde_json::Value> {
+        let parameters = BTreeMap::new();
+        let request = build_signed_request(parameters, self.recv_window)?;
+        self.client
+            .get_signed_d(FAPI_ACCOUNT, request.as_str())
             .await
     }
 
