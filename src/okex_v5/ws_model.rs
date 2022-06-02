@@ -205,7 +205,8 @@ pub struct OrderBookEvent {
 pub struct OrderBook {
     pub asks: Vec<Vec<String>>,
     pub bids: Vec<Vec<String>>,
-    pub inst_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub inst_id: Option<String>,
     #[serde(rename = "ts", with = "string_or_u64")]
     pub timestamp: u64,
 }

@@ -12,7 +12,7 @@ async fn main() {
 async fn ticker_websocket() {
     let keep_running = AtomicBool::new(true);
     let ticker_req =
-        r#"{"op": "subscribe","args": [{"channel": "tickers","instId": "ETH-USDT-SWAP"}]}"#;
+        r#"{"op": "subscribe","args": [{"channel": "bbo-tbt","instId": "SOL-ETH"}]}"#;
     let (tx, mut rx) = local_channel::mpsc::channel();
     let mut web_socket: WebSockets<WebsocketEvent> = WebSockets::new(tx);
 
