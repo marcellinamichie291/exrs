@@ -549,7 +549,7 @@ pub enum TimeInForce {
     IOC,
     /// Fill or Kill
     FOK,
-    /// Good till expired
+    /// Good Till Crossing (Post Only)
     GTX,
     #[serde(other)]
     Other,
