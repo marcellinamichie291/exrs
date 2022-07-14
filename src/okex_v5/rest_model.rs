@@ -105,9 +105,9 @@ impl Default for MarginMode {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OrderRequest {
-    #[serde(rename = "inst_id")]
+    #[serde(rename = "instId")]
     pub symbol: String,
-    #[serde(rename = "td_mode")]
+    #[serde(rename = "tdMode")]
     pub trade_mode: TradeMode,
     #[serde(rename = "ccy", skip_serializing_if = "Option::is_none")]
     pub currency: Option<String>,
@@ -118,7 +118,7 @@ pub struct OrderRequest {
     pub side: OrderSide,
     #[serde(rename = "posSide", skip_serializing_if = "Option::is_none")]
     pub position_side: Option<PositionSide>,
-    #[serde(rename = "ord_type")]
+    #[serde(rename = "ordType")]
     pub order_type: OrderType,
     #[serde(rename = "sz", with = "string_or_float")]
     pub qty: f64,
