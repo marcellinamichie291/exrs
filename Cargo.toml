@@ -38,6 +38,6 @@ serde_json = "1.0.83"
 serde_qs = "0.10.1"
 snmalloc-rs = "0.3.3"
 thiserror = "1.0.32"
-tokio = { version = "1.20.1", features = ["macros", "time"] }
+tokio = { version = "1.20.1", features = ["macros", "time", "rt"] }
 url = "2.2.2"
 uuid = { version = "1.1.2", features = ["serde", "v4"] }
