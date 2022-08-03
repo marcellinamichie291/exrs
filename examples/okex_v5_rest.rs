@@ -1,6 +1,3 @@
-#[macro_use]
-extern crate log;
-
 use env_logger::Builder;
 use exrs::okex_v5::account::*;
 use exrs::okex_v5::api::*;

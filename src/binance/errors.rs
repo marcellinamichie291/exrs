@@ -1,17 +1,11 @@
-use serde_json::Value;
-use std::collections::HashMap;
+use super::ws_model::WebsocketEvent;
 use thiserror::Error;
-
-use crate::binance::ws_model::WebsocketEvent;
 
 #[derive(Debug, Deserialize, Error)]
 #[error("code: {code}, msg: {msg}")]
 pub struct BinanceContentError {
     pub code: i16,
     pub msg: String,
-
-    #[serde(flatten)]
-    extra: HashMap<String, Value>,
 }
 
 /// First errors are technical errors
@@ -42,7 +36,7 @@ pub enum Error {
     TimestampError(#[from] std::time::SystemTimeError),
     #[error(transparent)]
     UTF8Err(#[from] std::str::Utf8Error),
-    #[error("{response}")]
+    #[error(transparent)]
     BinanceError {
         #[from]
         response: BinanceContentError,

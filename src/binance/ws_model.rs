@@ -239,7 +239,6 @@ pub struct DepthOrderBookEvent {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-#[serde(rename_all = "camelCase")]
 pub struct BookTickerEvent {
     #[serde(rename = "u")]
     pub update_id: u64,
@@ -270,7 +269,7 @@ pub struct CombinedStreamEvent<T> {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum WebsocketEventUntag {
-    WebsocketEvent(WebsocketEvent),
+    WebsocketEvent(Box<WebsocketEvent>),
     OrderBookPartial(OrderBookPartial),
     BookTicker(BookTickerEvent),
 }

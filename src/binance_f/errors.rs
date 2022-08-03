@@ -1,17 +1,11 @@
-use super::util::HashMap;
-use serde_json::Value;
+use super::ws_model::FuturesWebsocketEvent;
 use thiserror::Error;
-
-use crate::binance_f::ws_model::FuturesWebsocketEvent;
 
 #[derive(Debug, Deserialize, Error)]
 #[error("code: {code}, msg: {msg}")]
 pub struct BinanceContentError {
     pub code: i16,
     pub msg: String,
-
-    #[serde(flatten)]
-    extra: HashMap<String, Value>,
 }
 
 /// First errors are technical errors
@@ -37,12 +31,12 @@ pub enum Error {
     #[error(transparent)]
     WsProtocolError(#[from] awc::error::WsProtocolError),
     #[error(transparent)]
-    SendError(local_channel::mpsc::SendError<FuturesWebsocketEvent>),
+    SendError(Box<local_channel::mpsc::SendError<FuturesWebsocketEvent>>),
     #[error(transparent)]
     TimestampError(#[from] std::time::SystemTimeError),
     #[error(transparent)]
     UTF8Err(#[from] std::str::Utf8Error),
-    #[error("{response}")]
+    #[error(transparent)]
     BinanceError {
         #[from]
         response: BinanceContentError,

@@ -45,17 +45,6 @@ pub struct OrderRequest {
     pub recv_window: Option<u64>,
 }
 
-impl OrderRequest {
-    fn valid(&self) -> Result<()> {
-        if self.iceberg_qty.is_some() && self.time_in_force != Some(TimeInForce::GTC) {
-            return Err(Error::InvalidOrderError {
-                msg: "Time in force has to be GTC for iceberg orders".to_string(),
-            });
-        }
-        Ok(())
-    }
-}
-
 /// Order Cancellation Request
 /// perform an order cancellation for the account
 /// only works if the parameters match an active order
