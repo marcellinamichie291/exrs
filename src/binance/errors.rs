@@ -37,7 +37,7 @@ pub enum Error {
     #[error(transparent)]
     WsProtocolError(#[from] awc::error::WsProtocolError),
     #[error(transparent)]
-    SendError(local_channel::mpsc::SendError<WebsocketEvent>),
+    SendError(Box<local_channel::mpsc::SendError<WebsocketEvent>>),
     #[error(transparent)]
     TimestampError(#[from] std::time::SystemTimeError),
     #[error(transparent)]

@@ -1,7 +1,8 @@
+#![allow(dead_code)]
 use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 
-#[derive(PartialEq, Debug, Serialize, Deserialize, Clone)]
+#[derive(PartialEq, Eq, Debug, Serialize, Deserialize, Clone)]
 pub struct Asks {
     pub price: Decimal,
     pub qty: Decimal,
@@ -13,7 +14,7 @@ impl Asks {
     }
 }
 
-#[derive(PartialEq, Debug, Serialize, Deserialize, Clone)]
+#[derive(PartialEq, Eq, Debug, Serialize, Deserialize, Clone)]
 pub struct Bids {
     pub price: Decimal,
     pub qty: Decimal,

@@ -34,8 +34,7 @@ impl Client {
         passphrase: Option<String>,
         host: String,
     ) -> Self {
-        let builder = reqwest::ClientBuilder::new()
-            .timeout(Duration::from_secs(2));
+        let builder = reqwest::ClientBuilder::new().timeout(Duration::from_secs(2));
         Client {
             api_key: api_key.unwrap_or_else(|| "".into()),
             secret_key: secret_key.unwrap_or_else(|| "".into()),
@@ -203,11 +202,11 @@ impl Client {
         );
         custom_headers.insert(
             HeaderName::from_static("ok-access-sign"),
-            HeaderValue::from_str(&signature.as_str())?,
+            HeaderValue::from_str(signature.as_str())?,
         );
         custom_headers.insert(
             HeaderName::from_static("ok-access-timestamp"),
-            HeaderValue::from_str(&timestamp.to_string())?,
+            HeaderValue::from_str(timestamp.as_str())?,
         );
         custom_headers.insert(
             HeaderName::from_static("ok-access-passphrase"),
@@ -254,11 +253,11 @@ impl Client {
         );
         custom_headers.insert(
             HeaderName::from_static("ok-access-sign"),
-            HeaderValue::from_str(&signature.as_str())?,
+            HeaderValue::from_str(signature.as_str())?,
         );
         custom_headers.insert(
             HeaderName::from_static("ok-access-timestamp"),
-            HeaderValue::from_str(&timestamp.to_string())?,
+            HeaderValue::from_str(timestamp.as_str())?,
         );
         custom_headers.insert(
             HeaderName::from_static("ok-access-passphrase"),

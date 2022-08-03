@@ -1,8 +1,7 @@
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug)]
 pub struct Config {
     pub futures_rest_api_endpoint: String,
     pub futures_ws_endpoint: String,
-
     pub recv_window: u64,
 }
 

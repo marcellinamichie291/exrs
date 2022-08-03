@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use super::client::Client;
 use super::errors::*;
 use super::rest_model::*;
@@ -177,7 +178,7 @@ impl Account {
     {
         let order = ClosePositionRequest {
             symbol: symbol.into(),
-            pos_side: pos_side,
+            pos_side,
             margin_mode: MarginMode::Cross,
             currency: None,
         };

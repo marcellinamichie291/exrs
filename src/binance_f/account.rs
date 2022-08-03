@@ -132,11 +132,6 @@ struct ChangePositionModeRequest {
     pub dual_side_position: bool,
 }
 
-/// todo: BatchOrder
-struct BatchOrdersRequest {
-    pub batch_orders: Vec<OrderRequest>,
-}
-
 impl FuturesAccount {
     async fn post_order(&self, order: OrderRequest) -> Result<Transaction> {
         self.client

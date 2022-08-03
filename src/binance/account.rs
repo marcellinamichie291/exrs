@@ -99,11 +99,6 @@ pub struct OrdersQuery {
     pub recv_window: Option<u64>,
 }
 
-/// todo: BatchOrder
-struct BatchOrdersRequest {
-    pub batch_orders: Vec<OrderRequest>,
-}
-
 impl Account {
     /// General account information
     /// # Examples
@@ -303,7 +298,6 @@ impl Account {
     /// assert!(transaction.is_ok(), "{:?}", transaction);
     /// ```
     pub async fn place_order(&self, order: OrderRequest) -> Result<Transaction> {
-        let _ = order.valid()?;
         let recv_window = order.recv_window.unwrap_or(self.recv_window);
         let request = build_signed_request_p(order, recv_window)?;
         let data = self.client.post_signed(API_V3_ORDER, &request).await?;
@@ -333,7 +327,6 @@ impl Account {
     /// assert!(resp.is_ok(), "{:?}", resp);
     /// ```
     pub async fn place_test_order(&self, order: OrderRequest) -> Result<TestResponse> {
-        let _ = order.valid()?;
         let recv_window = order.recv_window.unwrap_or(self.recv_window);
         let request = build_signed_request_p(order, recv_window)?;
         let data = self.client.post_signed(API_V3_ORDER_TEST, &request).await?;

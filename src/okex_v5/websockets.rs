@@ -44,7 +44,7 @@ impl<WE: serde::de::DeserializeOwned + std::fmt::Debug> WebSockets<WE> {
     pub fn new_with_options(sender: mpsc::Sender<WE>, conf: Config) -> WebSockets<WE> {
         WebSockets {
             socket: None,
-            sender: sender,
+            sender,
             conf,
         }
     }
@@ -119,9 +119,9 @@ impl<WE: serde::de::DeserializeOwned + std::fmt::Debug> WebSockets<WE> {
         let signature = base64::encode(HMAC::mac(pre_hash.as_bytes(), secret_key.as_bytes()));
 
         let login_cfg = LoginConfig {
-            api_key: api_key,
-            passphrase: passphrase,
-            timestamp: timestamp,
+            api_key,
+            passphrase,
+            timestamp,
             sign: signature,
         };
 
@@ -176,7 +176,7 @@ impl<WE: serde::de::DeserializeOwned + std::fmt::Debug> WebSockets<WE> {
                                     }
                                 }
                             },
-                            None => return Err(Error::Msg(format!("Option::unwrap()` on a `None` value."))),
+                            None => return Err(Error::Msg("Option::unwrap()` on a `None` value.".to_string())),
                         }
                     }
                     _ = interval.tick() => {
@@ -237,7 +237,7 @@ impl<WE: serde::de::DeserializeOwned + std::fmt::Debug> WebSockets<WE> {
             tag: None,
             side: OrderSide::Buy,
             position_side: None, // None for net mode
-            order_type: order_type,
+            order_type,
             qty: qty.into(),
             price: Some(price.into()),
             reduce_only: None,
@@ -262,7 +262,7 @@ impl<WE: serde::de::DeserializeOwned + std::fmt::Debug> WebSockets<WE> {
             tag: None,
             side: OrderSide::Sell,
             position_side: None, // None for net mode
-            order_type: order_type,
+            order_type,
             qty: qty.into(),
             price: Some(price.into()),
             reduce_only: None,

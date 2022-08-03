@@ -57,7 +57,7 @@ impl FuturesMarket {
                 "/fapi/v1/depth",
                 Some(DepthQuery {
                     symbol: symbol.into(),
-                    limit: limit,
+                    limit,
                 }),
             )
             .await

@@ -71,6 +71,7 @@ pub fn diff_book_depth_stream(symbol: &str, update_speed: u16) -> String {
     format!("{}@depth@{}ms", symbol, update_speed)
 }
 
+#[allow(dead_code)]
 fn combined_stream(streams: Vec<String>) -> String {
     streams.join("/")
 }
@@ -95,7 +96,7 @@ impl<WE: serde::de::DeserializeOwned + std::fmt::Debug> FuturesWebSockets<WE> {
     pub fn new_with_options(sender: mpsc::Sender<WE>, conf: Config) -> FuturesWebSockets<WE> {
         FuturesWebSockets {
             socket: None,
-            sender: sender,
+            sender,
             conf,
         }
     }
@@ -163,7 +164,9 @@ impl<WE: serde::de::DeserializeOwned + std::fmt::Debug> FuturesWebSockets<WE> {
                         }
                     }
                     None => {
-                        return Err(Error::Msg(format!("Option::unwrap()` on a `None` value.")))
+                        return Err(Error::Msg(
+                            "Option::unwrap()` on a `None` value.".to_string(),
+                        ))
                     }
                 }
                 actix_rt::task::yield_now().await;
