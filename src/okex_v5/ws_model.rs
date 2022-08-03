@@ -227,7 +227,7 @@ pub struct IndexCandlesticksEvent {}
 #[serde(rename_all = "camelCase")]
 pub struct StatusEvent {}
 
-// Private Channels Starts from her
+// Private Channels Starts from here
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct AccountEvent {
