@@ -7,7 +7,7 @@ static API_KEY: &str = "";
 static SECRET_KEY: &str = "";
 static PASSPHRASE: &str = "";
 
-#[tokio::main]
+#[tokio::main(flavor="current_thread")]
 async fn main() {
     Builder::new().parse_default_env().init();
     take_order().await;
